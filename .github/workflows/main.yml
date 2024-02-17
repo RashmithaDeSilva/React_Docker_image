@@ -25,7 +25,7 @@ jobs:
       run: docker run -d --name react-container -p 3000:3000 -e REACT_APP_NAME=react-app react-image
 
     - name: Wait for the service to be ready
-      run: sleep 10s
+      run: sleep 20s
 
     - name: Get react-container container logs
       run: docker logs react-container
