@@ -13,16 +13,16 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Update Dockerfile to Define the command to run your application 
+    - name: Update entrypoint.sh to Define the command to run your application 
       run: |
-        echo "CMD [\"npm\", \"start\"]" >> Dockerfile
-        cat Dockerfile
+        echo "npm start" >> entrypoint.sh
+        cat entrypoint.sh
 
     - name: Build Docker image
       run: docker build -t react-image .
 
     - name: Run Docker container using image
-      run: docker run -d --name react-container -p 3000:3000 react-image
+      run: docker run -d --name react-container -p 3000:3000 -e REACT_APP_NAME=react-app react-image
 
     - name: Wait for the service to be ready
       run: sleep 10s
@@ -35,3 +35,8 @@ jobs:
 
     - name: Get react-container container logs
       run: docker logs react-container
+    
+    - name: Check app name
+      run: |
+        docker exec -it react-app sh
+        pwd 
