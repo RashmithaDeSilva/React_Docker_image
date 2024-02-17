@@ -38,6 +38,6 @@ jobs:
     
     - name: Check app name
       run: |
-        # docker exec -it react-container /bin/sh
-        # pwd
-        docker ps 
+        docker ps
+        docker exec -it react-container /bin/sh
+        pwd 
