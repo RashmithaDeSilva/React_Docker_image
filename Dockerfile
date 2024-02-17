@@ -11,14 +11,15 @@ WORKDIR /app
 # Update package list
 RUN apt-get update
 
-# Set the default app name using an environment variable
-ARG REACT_APP_NAME=my-react-app
-
 # Install create-react-app globally
 RUN npm install -g create-react-app
 
-# Create React app with the specified name
-RUN npx create-react-app $REACT_APP_NAME
+# Create an entrypoint script to set the app name and run the app
+COPY entrypoint.sh /app/entrypoint.sh
+RUN chmod +x /app/entrypoint.sh
 
-# Change to the app directory
-WORKDIR /app/$REACT_APP_NAME
+# Set the default app name using an environment variable
+ENV REACT_APP_NAME=my-react-app
+
+# Command to run when the container starts
+ENTRYPOINT ["/app/entrypoint.sh"]

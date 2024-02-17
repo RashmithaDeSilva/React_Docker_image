@@ -5,7 +5,7 @@
 docker build -t your-image-name .
 ```
 ```sh
-docker run -it --name your-container-name -p 3000:3000 your-image-name
+docker run -it --name your-container-name -p 3000:3000 -e REACT_APP_NAME=you-react-app-name your-image-name
 ```
 
 ---
