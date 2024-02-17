@@ -38,5 +38,5 @@ jobs:
     
     - name: Check app name
       run: |
-        docker exec -it react-app sh
+        docker exec -it react-container sh
         pwd 
