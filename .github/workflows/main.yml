@@ -27,11 +27,11 @@ jobs:
     - name: Wait for the service to be ready
       run: sleep 10s
 
-    - name: Get flask-container container logs
+    - name: Get react-container container logs
       run: docker logs react-container
 
     - name: Test API
       run: curl http://localhost:3000
 
-    - name: Get flask-container container logs
+    - name: Get react-container container logs
       run: docker logs react-container
