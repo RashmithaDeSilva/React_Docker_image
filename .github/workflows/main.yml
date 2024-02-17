@@ -15,7 +15,7 @@ jobs:
 
     - name: Update entrypoint.sh to Define the command to run your application 
       run: |
-        echo "npm start" >> entrypoint.sh
+        echo -e "\nnpm start" >> entrypoint.sh
         cat entrypoint.sh
 
     - name: Build Docker image
