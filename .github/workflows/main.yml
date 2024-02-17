@@ -35,9 +35,3 @@ jobs:
 
     - name: Get react-container container logs
       run: docker logs react-container
-    
-    - name: Check app name
-      run: |
-        docker ps
-        docker exec -it react-container /app/entrypoint.sh
-        pwd 
