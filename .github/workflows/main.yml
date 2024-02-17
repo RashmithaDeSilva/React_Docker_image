@@ -1,0 +1,37 @@
+name: Test React Image
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Update Dockerfile to Define the command to run your application 
+      run: |
+        echo "CMD [\"npm\", \"start\"]" >> Dockerfile
+        cat Dockerfile
+
+    - name: Build Docker image
+      run: docker build -t react-image .
+
+    - name: Run Docker container using image
+      run: docker run -d --name react-container -p 3000:3000 react-image
+
+    - name: Wait for the service to be ready
+      run: sleep 10s
+
+    - name: Get flask-container container logs
+      run: docker logs react-container
+
+    - name: Test API
+      run: curl http://localhost:3000
+
+    - name: Get flask-container container logs
+      run: docker logs react-container
